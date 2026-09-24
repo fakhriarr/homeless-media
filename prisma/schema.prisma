@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Default: SQLite agar bisa langsung jalan secara lokal tanpa setup database.
+// Untuk deployment (Vercel + Supabase/Neon), ganti provider jadi "postgresql"
+// dan atur env DATABASE_URL. Field yang dipakai di sini kompatibel dengan Postgres.
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String    @id @default(cuid())
+  name      String
+  email     String    @unique
+  password  String
+  role      String    @default("USER") // "USER" | "ADMIN"
+  avatar    String?
+  bio       String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  articles  Article[]
+  subscribers Subscriber[]
+}
+
+model Category {
+  id        String    @id @default(cuid())
+  name      String
+  slug      String    @unique
+  createdAt DateTime  @default(now())
+  articles  Article[]
+}
+
+model Article {
+  id          String    @id @default(cuid())
+  title       String
+  slug        String    @unique
+  excerpt     String?
+  content     String
+  coverImage  String?
+  status      String    @default("DRAFT") // "DRAFT" | "PUBLISHED" | "HIDDEN"
+  featured    Boolean   @default(false)
+  views       Int       @default(0)
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  category    Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  categoryId  String?
+  author      User?     @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  authorId    String?
+
+  @@index([status, publishedAt])
+  @@index([categoryId])
+}
+
+model Subscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+}

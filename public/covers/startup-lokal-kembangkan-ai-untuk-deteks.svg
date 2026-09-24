@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d9488"/>
+      <stop offset="1" stop-color="#065f56"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#g)"/>
+  <circle cx="1100" cy="120" r="220" fill="#ffffff" opacity="0.08"/>
+  <circle cx="140" cy="640" r="200" fill="#ffffff" opacity="0.06"/>
+  <text x="64" y="600" font-family="Georgia, serif" font-size="52" font-weight="bold" fill="#ffffff">Startup Lokal Kembangkan AI untuk …</text>
+  <text x="64" y="668" font-family="Arial, sans-serif" font-size="26" letter-spacing="4" fill="#ffffff" opacity="0.85">MEDIAKITA.ID</text>
+</svg>
