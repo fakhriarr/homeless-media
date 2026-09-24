@@ -73,9 +73,9 @@ curl -X POST http://localhost:3000/api/newsletter \
 
 ## Catatan Deployment (Vercel + Supabase/Neon)
 
-1. Ganti provider di `prisma/schema.prisma` menjadi `postgresql` dan set `DATABASE_URL` di dashboard hosting.
+1. Ganti provider di `prisma/schema.prisma` menjadi `postgresql` dan set `DATABASE_URL` di dashboard hosting (untuk Vercel + Supabase disarankan pakai connection string **Transaction pooler** port `6543` dengan `?pgbouncer=true&connection_limit=1`).
 2. Set `JWT_SECRET` (jangan commit `.env`).
 3. Di Vercel: import repo → set environment variables → auto-deploy.
-4. Upload gambar: untuk production bisa diganti Cloudinary (free tier) atau Supabase Storage; kode local disimpan di `public/uploads` (jangan di-commit, sudah di-`.gitignore`).
+4. Upload gambar: `POST /api/upload` otomatis memakai **Cloudinary** bila env `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET` terisi; jika tidak, fallback ke `public/uploads` (lokal, di-`.gitignore`).
 
 Frontend & API bisa di-deploy terpisah karena frontend mengonsumsi `/api/*` (ganti `NEXT_PUBLIC_APP_URL` untuk menunjuk backend lain).

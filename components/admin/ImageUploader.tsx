@@ -67,7 +67,7 @@ export default function ImageUploader({ value, onChange }: ImageUploaderProps) {
           />
           {error && <p className="text-sm text-red-600">{error}</p>}
           <p className="text-xs text-zinc-400">
-            Maks. 5MB. Format: JPG, PNG, WebP, GIF, SVG, AVIF. Disimpan secara lokal.
+            Maks. 5MB. Format: JPG, PNG, WebP, GIF, SVG, AVIF. Disimpan di Cloudinary.
           </p>
         </div>
       </div>
