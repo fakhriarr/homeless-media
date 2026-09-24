@@ -2,11 +2,10 @@ generator client {
   provider = "prisma-client-js"
 }
 
-// Default: SQLite agar bisa langsung jalan secara lokal tanpa setup database.
-// Untuk deployment (Vercel + Supabase/Neon), ganti provider jadi "postgresql"
-// dan atur env DATABASE_URL. Field yang dipakai di sini kompatibel dengan Postgres.
+// Database: PostgreSQL — di-hosting lewat Supabase.
+// URL koneksi dari Project Settings -> Database -> Connection string (Direct).
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
