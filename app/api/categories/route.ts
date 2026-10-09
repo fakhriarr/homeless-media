@@ -4,7 +4,7 @@ import { handleError, json } from "@/lib/api-helpers";
 export async function GET() {
   try {
     const categories = await prisma.category.findMany({
-      orderBy: { name: "asc" },
+      orderBy: { name: "desc" },
       include: {
         _count: {
           select: { articles: { where: { status: "PUBLISHED" } } },

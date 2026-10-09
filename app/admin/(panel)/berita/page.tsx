@@ -91,12 +91,12 @@ export default function AdminArticlesPage() {
     <div>
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="font-serif text-2xl font-bold text-zinc-900">Daftar Berita</h1>
+          <h1 className="font-heading text-2xl font-bold tracking-tight text-[#4A2E1F]">Daftar Berita</h1>
           <p className="text-sm text-zinc-500">Kelola seluruh konten berita di MediaKita.</p>
         </div>
         <Link
           href="/admin/berita/tambah"
-          className="inline-flex items-center gap-1.5 rounded-lg bg-red-700 px-4 py-2 text-sm font-semibold text-white hover:bg-red-800"
+          className="inline-flex items-center gap-1.5 rounded-lg bg-brand-700 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-800"
         >
           <PlusIcon className="h-4 w-4" /> Tambah Berita
         </Link>
@@ -108,7 +108,7 @@ export default function AdminArticlesPage() {
         </div>
       )}
       {error && (
-        <div className="mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-2.5 text-sm text-red-700">
+        <div className="mb-4 rounded-lg border border-brand-200 bg-brand-50 px-4 py-2.5 text-sm text-brand-700">
           {error}
         </div>
       )}
@@ -140,7 +140,7 @@ export default function AdminArticlesPage() {
         ) : !data || data.articles.length === 0 ? (
           <p className="px-6 py-10 text-center text-sm text-zinc-500">
             Tidak ada berita.{" "}
-            <Link href="/admin/berita/tambah" className="text-red-700 hover:underline">Tambah berita pertama</Link>
+            <Link href="/admin/berita/tambah" className="text-brand-700 hover:underline">Tambah berita pertama</Link>
           </p>
         ) : (
           <div className="overflow-x-auto">
@@ -158,7 +158,7 @@ export default function AdminArticlesPage() {
                 {data.articles.map((a) => (
                   <tr key={a.id} className="border-b border-zinc-100 last:border-0 hover:bg-zinc-50">
                     <td className="max-w-xs px-4 py-3">
-                      <Link href={`/berita/${a.slug}`} className="font-semibold text-zinc-900 hover:text-red-700">
+                      <Link href={`/berita/${a.slug}`} className="font-semibold text-zinc-900 hover:text-brand-700">
                         {a.title}
                       </Link>
                       <p className="text-xs text-zinc-400">
@@ -201,7 +201,7 @@ export default function AdminArticlesPage() {
                         <button
                           onClick={() => softDelete(a)}
                           disabled={actingId === a.id}
-                          className="inline-flex items-center rounded-lg bg-red-50 p-1.5 text-red-700 hover:bg-red-100 disabled:opacity-50"
+                          className="inline-flex items-center rounded-lg bg-brand-50 p-1.5 text-brand-700 hover:bg-brand-100 disabled:opacity-50"
                           title="Sembunyikan (soft delete)"
                         >
                           <TrashIcon className="h-3.5 w-3.5" />

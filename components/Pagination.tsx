@@ -40,7 +40,7 @@ export default function Pagination({ basePath, page, totalPages }: PaginationPro
               href={href(p)}
               aria-current={p === page ? "page" : undefined}
               className={`min-w-9 rounded-lg px-3 py-2 text-center text-sm font-medium ${
-                p === page ? "bg-red-700 text-white" : "border border-zinc-300 text-zinc-700 hover:bg-zinc-100"
+                p === page ? "bg-brand-700 text-white" : "border border-zinc-300 text-zinc-700 hover:bg-zinc-100"
               }`}
             >
               {p}

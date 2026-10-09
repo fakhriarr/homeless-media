@@ -57,10 +57,8 @@ function AdminLogin() {
       <div className="w-full max-w-sm">
         <div className="rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm">
           <div className="mb-6 text-center">
-            <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-red-700 font-serif text-2xl font-black text-white">
-              M
-            </span>
-            <h1 className="mt-3 font-serif text-xl font-bold text-zinc-900">Panel Admin MediaKita</h1>
+            <img src="/logo.png" alt="MediaKita" className="mx-auto h-12 w-auto" />
+            <h1 className="mt-3 font-heading text-xl font-bold tracking-tight text-[#4A2E1F]">Panel Admin MediaKita</h1>
             <p className="mt-1 text-sm text-zinc-500">Masuk dengan akun administrator.</p>
           </div>
 
@@ -74,7 +72,7 @@ function AdminLogin() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="admin@mediakita.id"
-                className="w-full rounded-lg border border-zinc-300 px-3.5 py-2.5 text-sm outline-none focus:border-red-700 focus:ring-2 focus:ring-red-100"
+                className="w-full rounded-lg border border-zinc-300 px-3.5 py-2.5 text-sm outline-none focus:border-brand-700 focus:ring-2 focus:ring-brand-100/40"
               />
             </div>
             <div>
@@ -86,16 +84,16 @@ function AdminLogin() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full rounded-lg border border-zinc-300 px-3.5 py-2.5 text-sm outline-none focus:border-red-700 focus:ring-2 focus:ring-red-100"
+                className="w-full rounded-lg border border-zinc-300 px-3.5 py-2.5 text-sm outline-none focus:border-brand-700 focus:ring-2 focus:ring-brand-100/40"
               />
             </div>
 
-            {error && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}
+            {error && <p className="rounded-lg bg-brand-50 px-3 py-2 text-sm text-brand-700">{error}</p>}
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-lg bg-red-700 py-2.5 text-sm font-semibold text-white hover:bg-red-800 disabled:opacity-60"
+              className="w-full rounded-lg bg-brand-700 py-2.5 text-sm font-semibold text-white hover:bg-brand-800 disabled:opacity-60"
             >
               {loading ? "Memproses…" : "Masuk ke Panel"}
             </button>
@@ -107,7 +105,7 @@ function AdminLogin() {
         </div>
 
         <p className="mt-5 text-center text-sm">
-          <Link href="/" className="font-medium text-zinc-600 hover:text-red-700">← Kembali ke situs</Link>
+          <Link href="/" className="font-medium text-zinc-600 hover:text-brand-700">← Kembali ke situs</Link>
         </p>
       </div>
     </div>

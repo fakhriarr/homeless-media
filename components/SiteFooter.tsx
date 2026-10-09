@@ -11,27 +11,24 @@ export default function SiteFooter({ categories }: { categories: Category[] }) {
       <div className="mx-auto max-w-6xl px-4 py-10">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded bg-red-700 font-serif text-lg font-black text-white">
-                M
-              </span>
-              <span className="font-serif text-xl font-bold text-zinc-900">{SITE_NAME}</span>
+            <Link href="/" className="flex items-center">
+              <img src="/logo.png" alt={SITE_NAME} className="h-10 w-auto" />
             </Link>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-zinc-600">
               {SITE_TAGLINE}. Menyajikan informasi nasional, ekonomi, olahraga, teknologi, hiburan, dan gaya hidup
               secara cepat, akurat, dan terpercaya. Dibangun dengan arsitektur headless (Next.js + API).
             </p>
             <div className="mt-4 flex items-center gap-3">
-              <a href="#" aria-label="Facebook" className="rounded-full bg-zinc-100 p-2 text-zinc-600 hover:bg-red-700 hover:text-white">
+              <a href="#" aria-label="Facebook" className="rounded-full bg-zinc-100 p-2 text-zinc-600 hover:bg-brand-700 hover:text-white">
                 <FacebookIcon />
               </a>
-              <a href="#" aria-label="Instagram" className="rounded-full bg-zinc-100 p-2 text-zinc-600 hover:bg-red-700 hover:text-white">
+              <a href="#" aria-label="Instagram" className="rounded-full bg-zinc-100 p-2 text-zinc-600 hover:bg-brand-700 hover:text-white">
                 <InstagramIcon />
               </a>
-              <a href="#" aria-label="Twitter" className="rounded-full bg-zinc-100 p-2 text-zinc-600 hover:bg-red-700 hover:text-white">
+              <a href="#" aria-label="Twitter" className="rounded-full bg-zinc-100 p-2 text-zinc-600 hover:bg-brand-700 hover:text-white">
                 <TwitterIcon />
               </a>
-              <a href="#" aria-label="YouTube" className="rounded-full bg-zinc-100 p-2 text-zinc-600 hover:bg-red-700 hover:text-white">
+              <a href="#" aria-label="YouTube" className="rounded-full bg-zinc-100 p-2 text-zinc-600 hover:bg-brand-700 hover:text-white">
                 <YouTubeIcon />
               </a>
             </div>
@@ -42,7 +39,7 @@ export default function SiteFooter({ categories }: { categories: Category[] }) {
             <ul className="space-y-2">
               {categories.map((c) => (
                 <li key={c.id}>
-                  <Link href={`/kategori/${c.slug}`} className="text-sm text-zinc-600 hover:text-red-700">
+                  <Link href={`/kategori/${c.slug}`} className="text-sm text-zinc-600 hover:text-brand-700">
                     {c.name}
                   </Link>
                 </li>
@@ -53,11 +50,11 @@ export default function SiteFooter({ categories }: { categories: Category[] }) {
           <div>
             <h3 className="mb-3 text-sm font-bold uppercase tracking-wide text-zinc-900">MediaKita</h3>
             <ul className="space-y-2">
-              <li><Link href="/" className="text-sm text-zinc-600 hover:text-red-700">Beranda</Link></li>
-              <li><Link href="/search" className="text-sm text-zinc-600 hover:text-red-700">Cari Berita</Link></li>
-              <li><Link href="/register" className="text-sm text-zinc-600 hover:text-red-700">Daftar Akun</Link></li>
-              <li><Link href="/login" className="text-sm text-zinc-600 hover:text-red-700">Masuk</Link></li>
-              <li><Link href="/admin/login" className="text-sm text-zinc-600 hover:text-red-700">Panel Admin</Link></li>
+              <li><Link href="/" className="text-sm text-zinc-600 hover:text-brand-700">Beranda</Link></li>
+              <li><Link href="/search" className="text-sm text-zinc-600 hover:text-brand-700">Cari Berita</Link></li>
+              <li><Link href="/register" className="text-sm text-zinc-600 hover:text-brand-700">Daftar Akun</Link></li>
+              <li><Link href="/login" className="text-sm text-zinc-600 hover:text-brand-700">Masuk</Link></li>
+              <li><Link href="/admin/login" className="text-sm text-zinc-600 hover:text-brand-700">Panel Admin</Link></li>
             </ul>
           </div>
         </div>

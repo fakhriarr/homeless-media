@@ -72,7 +72,7 @@ export default function ArticleForm({ initial, articleSlug, categories }: Articl
   }
 
   const inputClass =
-    "w-full rounded-lg border border-zinc-300 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-red-700 focus:ring-2 focus:ring-red-100";
+    "w-full rounded-lg border border-zinc-300 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-brand-700 focus:ring-2 focus:ring-brand-100/40";
   const labelClass = "mb-1.5 block text-sm font-medium text-zinc-700";
 
   return (
@@ -80,7 +80,7 @@ export default function ArticleForm({ initial, articleSlug, categories }: Articl
       <div className="grid gap-6 lg:grid-cols-3">
         <div className="space-y-5 lg:col-span-2">
           <div>
-            <label htmlFor="title" className={labelClass}>Judul berita <span className="text-red-600">*</span></label>
+            <label htmlFor="title" className={labelClass}>Judul berita <span className="text-brand-600">*</span></label>
             <input
               id="title"
               value={title}
@@ -103,7 +103,7 @@ export default function ArticleForm({ initial, articleSlug, categories }: Articl
           </div>
 
           <div>
-            <label htmlFor="content" className={labelClass}>Isi konten <span className="text-red-600">*</span></label>
+            <label htmlFor="content" className={labelClass}>Isi konten <span className="text-brand-600">*</span></label>
             <textarea
               id="content"
               value={content}
@@ -155,18 +155,18 @@ export default function ArticleForm({ initial, articleSlug, categories }: Articl
               type="checkbox"
               checked={featured}
               onChange={(e) => setFeatured(e.target.checked)}
-              className="h-4 w-4 rounded border-zinc-300 text-red-700 focus:ring-red-500"
+              className="h-4 w-4 rounded border-zinc-300 text-brand-700 focus:ring-brand-600"
             />
             Jadikan berita utama (hero)
           </label>
 
-          {error && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}
+          {error && <p className="rounded-lg bg-brand-50 px-3 py-2 text-sm text-brand-700">{error}</p>}
 
           <div className="flex gap-2 pt-1">
             <button
               type="submit"
               disabled={loading}
-              className="flex-1 rounded-lg bg-red-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-red-800 disabled:opacity-60"
+              className="flex-1 rounded-lg bg-brand-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-brand-800 disabled:opacity-60"
             >
               {loading ? "Menyimpan…" : isEdit ? "Simpan Perubahan" : "Terbitkan / Simpan Draft"}
             </button>

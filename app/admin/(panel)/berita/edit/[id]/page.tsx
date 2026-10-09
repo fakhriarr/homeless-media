@@ -20,7 +20,7 @@ export default async function AdminEditBeritaPage({ params }: PageProps<"/admin/
   return (
     <div>
       <div className="mb-6">
-        <h1 className="font-serif text-2xl font-bold text-zinc-900">Edit Berita</h1>
+        <h1 className="font-heading text-2xl font-bold tracking-tight text-[#4A2E1F]">Edit Berita</h1>
         <p className="text-sm text-zinc-500">Perbarui informasi berita berikut ini.</p>
       </div>
 

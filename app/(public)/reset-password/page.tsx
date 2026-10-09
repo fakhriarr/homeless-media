@@ -28,7 +28,7 @@ export default function ResetPasswordPage() {
     <div className="mx-auto max-w-md">
       <div className="rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm">
         <div className="mb-6 text-center">
-          <h1 className="font-serif text-2xl font-bold text-zinc-900">Reset Password</h1>
+          <h1 className="font-heading text-2xl font-bold tracking-tight text-[#4A2E1F]">Reset Password</h1>
           <p className="mt-1 text-sm text-zinc-500">
             Masukkan email Anda, kami akan mengirimkan link untuk mengatur ulang password.
           </p>
@@ -55,16 +55,16 @@ export default function ResetPasswordPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="nama@email.com"
-                className="w-full rounded-lg border border-zinc-300 px-3.5 py-2.5 text-sm outline-none focus:border-red-700 focus:ring-2 focus:ring-red-100"
+                className="w-full rounded-lg border border-zinc-300 px-3.5 py-2.5 text-sm outline-none focus:border-brand-700 focus:ring-2 focus:ring-brand-100/40"
               />
             </div>
 
-            {error && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}
+            {error && <p className="rounded-lg bg-brand-50 px-3 py-2 text-sm text-brand-700">{error}</p>}
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-lg bg-red-700 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-red-800 disabled:opacity-60"
+              className="w-full rounded-lg bg-brand-700 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-800 disabled:opacity-60"
             >
               {loading ? "Mengirim…" : "Kirim Link Reset"}
             </button>
@@ -73,7 +73,7 @@ export default function ResetPasswordPage() {
       </div>
 
       <p className="mt-5 text-center text-sm text-zinc-500">
-        <Link href="/login" className="font-semibold text-red-700 hover:text-red-800">Kembali ke halaman masuk</Link>
+        <Link href="/login" className="font-semibold text-brand-700 hover:text-brand-800">Kembali ke halaman masuk</Link>
       </p>
     </div>
   );

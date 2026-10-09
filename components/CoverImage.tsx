@@ -20,7 +20,12 @@ export default function CoverImage({ src, alt, className = "", sizes = "100vw", 
   if (/^https?:\/\//.test(src)) {
     return (
       // eslint-disable-next-line @next/next/no-img-element
-      <img src={src} alt={alt} className={`object-cover ${className}`} loading={priority ? "eager" : "lazy"} />
+      <img
+        src={src}
+        alt={alt}
+        className={`h-full w-full object-cover ${className}`}
+        loading={priority ? "eager" : "lazy"}
+      />
     );
   }
 

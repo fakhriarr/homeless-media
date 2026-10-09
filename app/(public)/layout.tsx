@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import Promotions from "@/components/Promotions";
 import CategoryBar from "@/components/CategoryBar";
 import SiteFooter from "@/components/SiteFooter";
 import { apiFetch } from "@/lib/api";
@@ -14,6 +15,7 @@ export default async function PublicLayout({ children }: { children: React.React
 
   return (
     <div className="flex min-h-screen flex-col">
+      <Promotions categories={categories}/>
       <Navbar categories={categories} />
       <CategoryBar categories={categories} />
       <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-6 sm:py-8">{children}</main>

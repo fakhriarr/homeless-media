@@ -28,9 +28,8 @@ export default function AdminNav({ user }: { user: SessionUser }) {
     <header className="border-b border-zinc-200 bg-white">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3">
         <div className="flex items-center gap-4">
-          <Link href="/" className="flex items-center gap-2">
-            <span className="flex h-8 w-8 items-center justify-center rounded bg-red-700 font-serif text-lg font-black text-white">M</span>
-            <span className="font-serif text-lg font-bold text-zinc-900">MediaKita</span>
+          <Link href="/" className="flex items-center">
+            <img src="/logo.png" alt="MediaKita" className="h-8 w-auto" />
           </Link>
           <span className="rounded-full bg-zinc-900 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-white">
             Admin
@@ -45,7 +44,7 @@ export default function AdminNav({ user }: { user: SessionUser }) {
                 key={n.href}
                 href={n.href}
                 className={`rounded-lg px-3 py-2 text-sm font-medium ${
-                  active ? "bg-red-50 text-red-700" : "text-zinc-700 hover:bg-zinc-100"
+                  active ? "bg-brand-50 text-brand-700" : "text-zinc-700 hover:bg-zinc-100"
                 }`}
               >
                 {n.label}
@@ -60,7 +59,7 @@ export default function AdminNav({ user }: { user: SessionUser }) {
           </Link>
           <button
             onClick={handleLogout}
-            className="inline-flex items-center gap-1.5 rounded-lg bg-red-700 px-3 py-1.5 text-sm font-medium text-white hover:bg-red-800"
+            className="inline-flex items-center gap-1.5 rounded-lg bg-brand-700 px-3 py-1.5 text-sm font-medium text-white hover:bg-brand-800"
           >
             <LogoutIcon className="h-3.5 w-3.5" /> Keluar
           </button>

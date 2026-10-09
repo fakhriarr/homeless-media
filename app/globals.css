@@ -3,22 +3,36 @@
 :root {
   --background: #fafafa;
   --foreground: #18181b;
+  --brand-primary: #ed6131;
+  --brand-primary-50: #fef5f0;
+  --brand-primary-100: #fce8df;
+  --brand-primary-200: #fad1bf;
+  --brand-primary-600: #e25a2b;
+  --brand-primary-700: #c94e24;
+  --brand-primary-800: #a8431f;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-brand: #ed6131;
+  --color-brand-600: #e25a2b;
+  --color-brand-700: #c94e24;
+  --color-brand-800: #a8431f;
+  --color-brand-50: #fef5f0;
+  --color-brand-100: #fce8df;
+  --color-brand-200: #fad1bf;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 ::selection {
-  background: #c8102e;
+  background: #ed6131;
   color: #fff;
 }

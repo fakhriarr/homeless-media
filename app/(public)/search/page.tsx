@@ -72,10 +72,10 @@ function SearchForm({ initial, sort }: { initial: string; sort?: string }) {
         name="q"
         defaultValue={initial}
         placeholder="Cari judul berita…"
-        className="flex-1 rounded-lg border border-zinc-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-red-700 focus:ring-2 focus:ring-red-100"
+        className="flex-1 rounded-lg border border-zinc-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-700 focus:ring-2 focus:ring-brand-100/40"
       />
       {sort && <input type="hidden" name="sort" value={sort} />}
-      <button type="submit" className="rounded-lg bg-red-700 px-5 py-2 text-sm font-semibold text-white hover:bg-red-800">
+      <button type="submit" className="rounded-lg bg-brand-700 px-5 py-2 text-sm font-semibold text-white hover:bg-brand-800">
         Cari
       </button>
     </form>

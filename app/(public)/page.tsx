@@ -17,7 +17,7 @@ export default async function HomePage() {
     apiFetch<{ categories: Category[] }>("/api/categories"),
     apiFetch<ArticleListResponse>("/api/articles?featured=1&limit=1"),
     apiFetch<ArticleListResponse>("/api/articles?limit=8"),
-    apiFetch<ArticleListResponse>("/api/articles?popular=1&limit=5"),
+    apiFetch<ArticleListResponse>("/api/articles?popular=1&limit=6"),
   ]);
 
   const featured = heroRes.articles[0];
@@ -37,10 +37,10 @@ export default async function HomePage() {
       <section className="grid gap-10 lg:grid-cols-3">
         <div className="lg:col-span-2">{featured ? <HeroArticle article={featured} /> : null}</div>
         <aside>
-          <SectionHeading title="Berita Terbaru" href="/search" />
+          <SectionHeading title="Artikel Terbaru" href="/search" />
           <div>
-            {latest.slice(0, 6).map((a: Article) => (
-              <CompactArticle key={a.id} article={a} />
+            {latest.slice(0, 5).map((a: Article) => (
+              <CompactArticle key={a.id} article={a} showImage />
             ))}
           </div>
         </aside>
@@ -48,10 +48,10 @@ export default async function HomePage() {
 
       {/* Popular News */}
       <section>
-        <SectionHeading title="Berita Terpopuler" href="/search?sort=popular&q=" />
-        <div className="grid gap-x-8 gap-y-2 md:grid-cols-2 lg:grid-cols-3">
-          {popular.map((a, i) => (
-            <CompactArticle key={a.id} article={a} rank={i + 1} />
+        <SectionHeading title="Kuliner Populer" href="/search?sort=popular&q=" />
+        <div className="grid gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
+          {popular.slice(0, 6).map((a, i) => (
+            <CompactArticle key={a.id} article={a} rank={i + 1} showImage />
           ))}
         </div>
       </section>

@@ -71,7 +71,7 @@ export default async function ArticlePage({ params }: PageProps<"/berita/[slug]"
 
       <div className="lg:col-span-2">
         <CategoryBadge name={article.category?.name} slug={article.category?.slug} />
-        <h1 className="mt-2 font-serif text-3xl font-bold leading-tight text-zinc-900 sm:text-4xl">
+        <h1 className="mt-2 font-heading text-3xl font-extrabold tracking-tight leading-[1.2] text-[#4A2E1F] sm:text-4xl">
           {article.title}
         </h1>
         {article.excerpt && <p className="mt-3 text-base leading-relaxed text-zinc-600">{article.excerpt}</p>}
@@ -88,7 +88,7 @@ export default async function ArticlePage({ params }: PageProps<"/berita/[slug]"
 
         <article className="mt-6 space-y-5">
           {paragraphs.map((p, i) => (
-            <p key={i} className="font-sans text-[17px] leading-8 text-zinc-800">
+            <p key={i} className="font-sans text-[17px] leading-7 text-zinc-800 sm:text-lg sm:leading-[1.75]">
               {p}
             </p>
           ))}
@@ -97,12 +97,12 @@ export default async function ArticlePage({ params }: PageProps<"/berita/[slug]"
         {/* Profil Penulis */}
         {article.author && (
           <div className="mt-8 flex items-start gap-4 rounded-xl border border-zinc-200 bg-white p-5">
-            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-red-700 text-lg font-bold text-white">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-700 text-lg font-bold text-white">
               {article.author.name.charAt(0).toUpperCase()}
             </span>
             <div>
               <p className="text-xs font-semibold uppercase tracking-wide text-zinc-400">Penulis</p>
-              <p className="font-serif text-lg font-bold text-zinc-900">{article.author.name}</p>
+              <p className="font-heading text-lg font-bold tracking-tight text-[#4A2E1F]">{article.author.name}</p>
               {article.author.bio && <p className="mt-1 text-sm leading-relaxed text-zinc-600">{article.author.bio}</p>}
             </div>
           </div>

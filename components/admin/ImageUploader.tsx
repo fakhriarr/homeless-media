@@ -63,9 +63,9 @@ export default function ImageUploader({ value, onChange }: ImageUploaderProps) {
             value={value}
             onChange={(e) => onChange(e.target.value)}
             placeholder="atau tempel URL gambar…"
-            className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm outline-none focus:border-red-700 focus:ring-2 focus:ring-red-100"
+            className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm outline-none focus:border-brand-700 focus:ring-2 focus:ring-brand-100/40"
           />
-          {error && <p className="text-sm text-red-600">{error}</p>}
+          {error && <p className="text-sm text-brand-600">{error}</p>}
           <p className="text-xs text-zinc-400">
             Maks. 5MB. Format: JPG, PNG, WebP, GIF, SVG, AVIF. Disimpan di Cloudinary.
           </p>

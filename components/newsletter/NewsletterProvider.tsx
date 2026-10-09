@@ -76,7 +76,7 @@ export default function NewsletterProvider({ children }: { children: ReactNode }
             className="w-full max-w-md overflow-hidden rounded-2xl bg-white shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative bg-red-700 px-6 py-8 text-white">
+            <div className="relative bg-brand-700 px-6 py-8 text-white">
               <button
                 onClick={close}
                 className="absolute right-4 top-4 rounded-full p-1.5 text-white/80 hover:bg-white/15"
@@ -87,8 +87,8 @@ export default function NewsletterProvider({ children }: { children: ReactNode }
               <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-white/15">
                 <MailIcon className="h-6 w-6" />
               </div>
-              <h2 className="font-serif text-2xl font-bold">Berlangganan Newsletter</h2>
-              <p className="mt-1 text-sm text-red-100">
+              <h2 className="font-heading text-2xl font-extrabold tracking-tight">Berlangganan Newsletter</h2>
+              <p className="mt-1 text-sm text-white/90">
                 Dapatkan kabar terbaru dan berita penting langsung di email Anda.
               </p>
             </div>
@@ -112,16 +112,16 @@ export default function NewsletterProvider({ children }: { children: ReactNode }
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="nama@email.com"
-                      className="w-full rounded-lg border border-zinc-300 px-3.5 py-2.5 text-sm outline-none focus:border-red-700 focus:ring-2 focus:ring-red-100"
+                      className="w-full rounded-lg border border-zinc-300 px-3.5 py-2.5 text-sm outline-none focus:border-brand-700 focus:ring-2 focus:ring-brand-100/40"
                     />
                   </div>
                   {status === "error" && message && (
-                    <p className="text-sm text-red-600">{message}</p>
+                    <p className="text-sm text-brand-600">{message}</p>
                   )}
                   <button
                     type="submit"
                     disabled={status === "loading"}
-                    className="w-full rounded-lg bg-red-700 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-red-800 disabled:opacity-60"
+                    className="w-full rounded-lg bg-brand-700 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-800 disabled:opacity-60"
                   >
                     {status === "loading" ? "Mengirim…" : "Berlangganan"}
                   </button>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { Category, SessionUser } from "@/lib/types";
@@ -11,12 +11,10 @@ import { CloseIcon, LogoutIcon, MenuIcon, SearchIcon } from "@/components/icons"
 export default function Navbar({ categories }: { categories: Category[] }) {
   const [user, setUser] = useState<SessionUser | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
-  const searchRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     clientApi
@@ -28,13 +26,8 @@ export default function Navbar({ categories }: { categories: Category[] }) {
 
   function closeMenus() {
     setMenuOpen(false);
-    setSearchOpen(false);
     setUserMenuOpen(false);
   }
-
-  useEffect(() => {
-    if (searchOpen) searchRef.current?.focus();
-  }, [searchOpen]);
 
   function submitSearch(e: React.FormEvent) {
     e.preventDefault();
@@ -55,7 +48,7 @@ export default function Navbar({ categories }: { categories: Category[] }) {
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-zinc-200 bg-white">
+    <header className="sticky top-8 z-40 border-b border-zinc-200 bg-white">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
         <button
           className="lg:hidden rounded-md p-2 text-zinc-700 hover:bg-zinc-100"
@@ -65,49 +58,35 @@ export default function Navbar({ categories }: { categories: Category[] }) {
           <MenuIcon className="h-5 w-5" />
         </button>
 
-        <Link href="/" onClick={closeMenus} className="flex items-center gap-2">
-          <span className="flex h-8 w-8 items-center justify-center rounded bg-red-700 font-serif text-lg font-black text-white">
-            M
-          </span>
-          <span className="font-serif text-xl font-bold tracking-tight text-zinc-900">{SITE_NAME}</span>
+        <Link href="/" onClick={closeMenus} className="flex items-center">
+          <img src="/logo.png" alt={SITE_NAME} className="h-9 w-auto" />
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Menu utama">
+        {/* <nav className="hidden items-center gap-1 lg:flex" aria-label="Menu utama">
           {categories.slice(0, 6).map((c) => (
             <Link
               key={c.id}
               href={`/kategori/${c.slug}`}
               onClick={closeMenus}
-              className="rounded-md px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100 hover:text-red-700"
+              className="rounded-md px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100 hover:text-brand-700"
             >
               {c.name}
             </Link>
           ))}
-        </nav>
+        </nav> */}
 
-        <div className="flex items-center gap-1.5">
-          {searchOpen ? (
-            <form onSubmit={submitSearch} className="flex items-center gap-2">
+        <div className="flex flex-1 items-center justify-end gap-1.5">
+          <form onSubmit={submitSearch} className="hidden items-center gap-2 sm:flex sm:flex-1 sm:max-w-md lg:max-w-lg">
+            <div className="relative flex w-full items-center">
+              <SearchIcon className="absolute left-3 h-4 w-4 text-zinc-400" />
               <input
-                ref={searchRef}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Cari berita…"
-                className="w-40 rounded-lg border border-zinc-300 px-3 py-1.5 text-sm outline-none focus:border-red-700 sm:w-56"
+                className="w-full rounded-lg border border-zinc-300 bg-white py-1.5 pl-9 pr-3 text-sm outline-none focus:border-brand-700 focus:ring-2 focus:ring-brand-100/40"
               />
-              <button type="button" onClick={() => setSearchOpen(false)} className="text-zinc-500 hover:text-zinc-700" aria-label="Tutup pencarian">
-                <CloseIcon className="h-5 w-5" />
-              </button>
-            </form>
-          ) : (
-            <button
-              onClick={() => setSearchOpen(true)}
-              className="rounded-md p-2 text-zinc-700 hover:bg-zinc-100"
-              aria-label="Cari berita"
-            >
-              <SearchIcon className="h-5 w-5" />
-            </button>
-          )}
+            </div>
+          </form>
 
           {!loading && !user && (
             <div className="hidden items-center gap-1.5 sm:flex">
@@ -121,7 +100,7 @@ export default function Navbar({ categories }: { categories: Category[] }) {
               <Link
                 href="/register"
                 onClick={closeMenus}
-                className="rounded-lg bg-red-700 px-3.5 py-2 text-sm font-medium text-white hover:bg-red-800"
+                className="rounded-lg bg-brand-700 px-3.5 py-2 text-sm font-medium text-white hover:bg-brand-800"
               >
                 Daftar
               </Link>
@@ -135,7 +114,7 @@ export default function Navbar({ categories }: { categories: Category[] }) {
                 className="flex items-center gap-2 rounded-md p-2 text-zinc-700 hover:bg-zinc-100"
                 aria-label="Menu akun"
               >
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-red-700 text-xs font-bold text-white">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-700 text-xs font-bold text-white">
                   {user.name.charAt(0).toUpperCase()}
                 </span>
                 <span className="hidden max-w-[7rem] truncate text-sm font-medium sm:block">{user.name}</span>
@@ -157,7 +136,7 @@ export default function Navbar({ categories }: { categories: Category[] }) {
                   </Link>
                   <button
                     onClick={handleLogout}
-                    className="flex w-full items-center gap-2 px-4 py-2 text-left text-sm text-red-700 hover:bg-red-50"
+                    className="flex w-full items-center gap-2 px-4 py-2 text-left text-sm text-brand-700 hover:bg-brand-50"
                   >
                     <LogoutIcon className="h-3.5 w-3.5" /> Keluar
                   </button>
@@ -169,7 +148,7 @@ export default function Navbar({ categories }: { categories: Category[] }) {
           <Link
             href={user ? "/#berlangganan" : "/register"}
             onClick={closeMenus}
-            className="hidden rounded-lg bg-zinc-900 px-3.5 py-2 text-sm font-medium text-white hover:bg-zinc-700 md:block"
+            className="hidden rounded-full border-1 border-[#552B19] px-3 py-1.5 text-sm font-medium text-[#552B19] hover:bg-[#552B19] hover:text-white md:block"
           >
             Langganan
           </Link>
@@ -177,29 +156,84 @@ export default function Navbar({ categories }: { categories: Category[] }) {
       </div>
 
       {menuOpen && (
-        <div className="border-t border-zinc-200 bg-white px-4 py-3 lg:hidden">
-          <nav className="grid grid-cols-2 gap-1" aria-label="Menu kategori mobile">
-            {categories.map((c) => (
-              <Link
-                key={c.id}
-                href={`/kategori/${c.slug}`}
-                onClick={closeMenus}
-                className="rounded-md px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100"
-              >
-                {c.name}
-              </Link>
-            ))}
-          </nav>
-          {!user && (
-            <div className="mt-3 flex gap-2 border-t border-zinc-100 pt-3">
-              <Link href="/login" onClick={closeMenus} className="flex-1 rounded-lg border border-zinc-300 px-4 py-2 text-center text-sm font-medium text-zinc-800">
-                Masuk
-              </Link>
-              <Link href="/register" onClick={closeMenus} className="flex-1 rounded-lg bg-red-700 px-4 py-2 text-center text-sm font-medium text-white">
-                Daftar
-              </Link>
+        <div className="fixed inset-0 z-50 flex flex-col bg-white lg:hidden">
+          <div className="flex h-16 shrink-0 items-center justify-between gap-4 border-b border-zinc-200 px-4">
+            <button
+              className="rounded-md p-2 text-zinc-700 hover:bg-zinc-100"
+              onClick={closeMenus}
+              aria-label="Tutup menu"
+            >
+              <CloseIcon className="h-5 w-5" />
+            </button>
+            <Link href="/" onClick={closeMenus} className="flex items-center">
+              <img src="/logo.png" alt={SITE_NAME} className="h-9 w-auto" />
+            </Link>
+            <div className="w-9" />
+          </div>
+
+          <div className="flex flex-1 flex-col justify-between overflow-y-auto px-4 pb-6 pt-4">
+            <div>
+              <form onSubmit={submitSearch} className="mb-4">
+                <div className="relative flex w-full items-center">
+                  <SearchIcon className="absolute left-3 h-4 w-4 text-zinc-400" />
+                  <input
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Cari berita…"
+                    className="w-full rounded-lg border border-zinc-300 bg-white py-2 pl-9 pr-3 text-sm outline-none focus:border-brand-700 focus:ring-2 focus:ring-brand-100/40"
+                  />
+                </div>
+              </form>
+
+              <nav className="flex flex-col gap-1" aria-label="Menu kategori mobile">
+                {categories.map((c) => (
+                  <Link
+                    key={c.id}
+                    href={`/kategori/${c.slug}`}
+                    onClick={closeMenus}
+                    className="rounded-md px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-zinc-100"
+                  >
+                    {c.name}
+                  </Link>
+                ))}
+              </nav>
             </div>
-          )}
+
+            <div className="mt-4 border-t border-zinc-100 py-4">
+              {!user && (
+                <div className="flex gap-2">
+                  <Link href="/login" onClick={closeMenus} className="flex-1 rounded-lg border border-zinc-300 px-4 py-2 text-center text-sm font-medium text-zinc-800">
+                    Masuk
+                  </Link>
+                  <Link href="/register" onClick={closeMenus} className="flex-1 rounded-lg bg-brand-700 px-4 py-2 text-center text-sm font-medium text-white">
+                    Daftar
+                  </Link>
+                </div>
+              )}
+              {user && (
+                <div className="space-y-2">
+                  <div className="rounded-lg border border-zinc-200 bg-zinc-50 px-4 py-3">
+                    <p className="truncate text-sm font-semibold text-zinc-900">{user.name}</p>
+                    <p className="truncate text-xs text-zinc-500">{user.email}</p>
+                  </div>
+                  {user.role === "ADMIN" && (
+                    <Link href="/admin/berita" onClick={closeMenus} className="block rounded-md px-3 py-2 text-sm text-zinc-700 hover:bg-zinc-100">
+                      Panel Admin
+                    </Link>
+                  )}
+                  <Link href="/#berlangganan" onClick={closeMenus} className="block rounded-md px-3 py-2 text-sm text-zinc-700 hover:bg-zinc-100">
+                    Berlangganan
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-left text-sm text-brand-700 hover:bg-brand-50"
+                  >
+                    <LogoutIcon className="h-3.5 w-3.5" /> Keluar
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       )}
     </header>

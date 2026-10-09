@@ -5,12 +5,10 @@ import CoverImage from "@/components/CoverImage";
 import { ClockIcon, EyeIcon } from "@/components/icons";
 
 const CATEGORY_COLORS: Record<string, string> = {
-  Nasional: "bg-red-700",
-  Ekonomi: "bg-emerald-700",
-  Olahraga: "bg-blue-700",
-  Teknologi: "bg-violet-700",
-  Hiburan: "bg-amber-600",
-  "Gaya Hidup": "bg-teal-700",
+  "Kuliner Lokal": "bg-brand-700",
+  "Ramah Kantong": "bg-bg-[#3F7D20]",
+  "Hidden Gem": "bg-[#0E7490]",
+  "Cerita Pelaku Kuliner": "bg-[#6B4226]",
 };
 
 export function CategoryBadge({ name, slug, color }: { name?: string; slug?: string; color?: string }) {
@@ -18,7 +16,7 @@ export function CategoryBadge({ name, slug, color }: { name?: string; slug?: str
   return (
     <Link
       href={`/kategori/${slug}`}
-      className={`inline-block rounded px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-white transition-opacity hover:opacity-85 ${
+      className={`inline-block rounded-full px-3 py-1 text-[11px] font-medium tracking-wide text-white transition-opacity hover:opacity-85 ${
         color ?? CATEGORY_COLORS[name] ?? "bg-zinc-700"
       }`}
     >
@@ -64,8 +62,8 @@ export function HeroArticle({ article }: { article: Article }) {
         </div>
       </Link>
       <CategoryBadge name={article.category?.name} slug={article.category?.slug} />
-      <h2 className="mt-2 font-serif text-2xl font-bold leading-snug text-zinc-900 sm:text-3xl">
-        <Link href={`/berita/${article.slug}`} className="transition-colors group-hover:text-red-700">
+      <h2 className="mt-2 font-heading text-2xl font-extrabold tracking-tight leading-[1.25] text-[#4A2E1F] sm:text-3xl">
+        <Link href={`/berita/${article.slug}`} className="transition-colors group-hover:text-brand-700">
           {article.title}
         </Link>
       </h2>
@@ -88,8 +86,8 @@ export function GridArticle({ article }: { article: Article }) {
         </div>
       </Link>
       <CategoryBadge name={article.category?.name} slug={article.category?.slug} />
-      <h3 className="mt-2 font-serif text-base font-bold leading-snug text-zinc-900">
-        <Link href={`/berita/${article.slug}`} className="transition-colors group-hover:text-red-700">
+      <h3 className="mt-2 font-heading text-base font-bold tracking-tight leading-[1.25] text-[#4A2E1F]">
+        <Link href={`/berita/${article.slug}`} className="transition-colors group-hover:text-brand-700">
           {article.title}
         </Link>
       </h3>
@@ -108,8 +106,8 @@ export function HorizontalArticle({ article }: { article: Article }) {
       </Link>
       <div className="min-w-0">
         <CategoryBadge name={article.category?.name} slug={article.category?.slug} />
-        <h3 className="mt-1.5 font-serif text-sm font-bold leading-snug text-zinc-900 sm:text-base">
-          <Link href={`/berita/${article.slug}`} className="transition-colors group-hover:text-red-700">
+        <h3 className="mt-1.5 font-heading text-sm font-bold tracking-tight leading-[1.25] text-[#4A2E1F] sm:text-base">
+          <Link href={`/berita/${article.slug}`} className="transition-colors group-hover:text-brand-700">
             {article.title}
           </Link>
         </h3>
@@ -124,20 +122,27 @@ export function HorizontalArticle({ article }: { article: Article }) {
 export function CompactArticle({
   article,
   rank,
+  showImage,
 }: {
   article: Article;
   rank?: number;
+  showImage?: boolean;
 }) {
   return (
     <article className="group flex gap-3 border-b border-zinc-100 py-3 last:border-0">
-      {rank !== undefined && (
-        <Link href={`/berita/${article.slug}`} className="shrink-0 font-serif text-2xl font-black text-red-700/70">
+      {showImage && (
+        <Link href={`/berita/${article.slug}`} className="relative block h-16 w-20 shrink-0 overflow-hidden rounded-md bg-zinc-200 sm:h-20 sm:w-24">
+          <CoverImage src={article.coverImage} alt={article.title} className="transition-transform duration-300 group-hover:scale-[1.05]" sizes="96px" />
+        </Link>
+      )}
+      {rank !== undefined && !showImage && (
+        <Link href={`/berita/${article.slug}`} className="shrink-0 font-heading text-2xl font-extrabold tracking-tight text-brand-700/70">
           {rank}
         </Link>
       )}
       <div className="min-w-0">
-        <h3 className="font-serif text-sm font-bold leading-snug text-zinc-900">
-          <Link href={`/berita/${article.slug}`} className="transition-colors group-hover:text-red-700">
+        <h3 className="font-heading text-sm font-bold tracking-tight leading-[1.25] text-[#4A2E1F]">
+          <Link href={`/berita/${article.slug}`} className="transition-colors group-hover:text-brand-700">
             {article.title}
           </Link>
         </h3>

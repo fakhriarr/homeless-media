@@ -1,4 +1,4 @@
-export const SITE_NAME = "MediaKita";
+export const SITE_NAME = "JelajahRasa";
 export const SITE_TAGLINE = "Portal Berita Terpercaya";
 export const SITE_DESCRIPTION =
   "MediaKita adalah portal berita Indonesia yang menyajikan informasi nasional, ekonomi, olahraga, teknologi, hiburan, dan gaya hidup secara cepat dan terpercaya.";
