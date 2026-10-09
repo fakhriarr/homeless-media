@@ -3,7 +3,7 @@ import { ChevronRightIcon } from "@/components/icons";
 
 export function SectionHeading({ title, href }: { title: string; href?: string }) {
   return (
-    <div className="mb-5 flex items-center justify-between border-b-2 border-zinc-900 pb-2">
+    <div className="mb-5 flex items-center justify-between border-b-1 border-black/10 pb-2">
       <h2 className="font-heading text-xl font-bold tracking-tight text-[#4A2E1F]">{title}</h2>
       {href && (
         <Link
