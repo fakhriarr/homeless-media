@@ -93,14 +93,14 @@ export default function Navbar({ categories }: { categories: Category[] }) {
               <Link
                 href="/login"
                 onClick={closeMenus}
-                className="rounded-lg px-3.5 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100"
+                className="rounded-full px-3 py-1.5 text-sm font-medium text-zinc-700 hover:bg-zinc-100"
               >
                 Masuk
               </Link>
               <Link
                 href="/register"
                 onClick={closeMenus}
-                className="rounded-lg bg-brand-700 px-3.5 py-2 text-sm font-medium text-white hover:bg-brand-800"
+                className="rounded-full bg-brand-700 px-3 py-1.5 text-sm font-medium text-white hover:bg-brand-800"
               >
                 Daftar
               </Link>
@@ -148,7 +148,7 @@ export default function Navbar({ categories }: { categories: Category[] }) {
           <Link
             href={user ? "/#berlangganan" : "/register"}
             onClick={closeMenus}
-            className="hidden rounded-full border-1 border-[#552B19] px-3 py-1.5 text-sm font-medium text-[#552B19] hover:bg-[#552B19] hover:text-white md:block"
+            className="hidden rounded-full border-1 border-[#552B19] px-3 py-1.5 text-sm font-medium text-[#552B19] hover:bg-brand-700 hover:border-brand-700 hover:text-white md:block"
           >
             Langganan
           </Link>
