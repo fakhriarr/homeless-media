@@ -13,7 +13,7 @@ export async function Sidebar() {
   return (
     <aside className="space-y-8">
       <section>
-        <SectionHeading title="Berita Terbaru" />
+        <SectionHeading title="Artikel Terbaru" />
         <div>
           {latest.map((a) => (
             <CompactArticle key={a.id} article={a} showImage />
@@ -24,7 +24,7 @@ export async function Sidebar() {
       <section className="rounded-xl border border-zinc-200 p-4">
         <div className="mb-2 flex items-center gap-2 border-b-2 border-zinc-900 pb-2">
           <TrendingUpIcon className="h-5 w-5 text-brand-700" />
-          <h2 className="font-heading text-lg font-bold tracking-tight text-[#4A2E1F]">Berita Trending</h2>
+          <h2 className="font-heading text-lg font-bold tracking-tight text-[#4A2E1F]">Kuliner Trending</h2>
         </div>
         <div>
           {trending.map((a, i) => (

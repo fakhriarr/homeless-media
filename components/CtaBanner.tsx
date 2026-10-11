@@ -18,10 +18,10 @@ export default function CtaBanner() {
         <h2 className="font-heading text-3xl font-extrabold tracking-tight leading-tight text-white sm:text-4xl lg:text-[44px]">
           Jangan Lewatkan
           <br />
-          Berita Penting
+          Artikel Menarik
         </h2>
         <p className="mt-4 max-w-md text-sm text-white/80 md:text-base">
-          Berlangganan newsletter kami dan terima ringkasan berita terbaik setiap pekan.
+          Berlangganan newsletter kami dan terima ringkasan artikel menarik setiap pekan.
         </p>
         <div className="mt-8">
           <SubscribeButton
