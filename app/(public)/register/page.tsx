@@ -32,9 +32,6 @@ export default function RegisterPage() {
       await clientApi.post("/api/auth/register", { name, email, password });
       router.push("/");
       router.refresh();
-      if (typeof window !== "undefined") {
-        setTimeout(() => window.location.reload(), 100);
-      }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Registrasi gagal.");
     } finally {

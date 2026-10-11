@@ -6,7 +6,7 @@ import { ClockIcon, EyeIcon } from "@/components/icons";
 
 const CATEGORY_COLORS: Record<string, string> = {
   "Kuliner Lokal": "bg-brand-700",
-  "Ramah Kantong": "bg-bg-[#3F7D20]",
+  "Ramah Kantong": "bg-[#3F7D20]",
   "Hidden Gem": "bg-[#0E7490]",
   "Cerita Pelaku Kuliner": "bg-[#6B4226]",
 };
@@ -133,6 +133,11 @@ export function CompactArticle({
       {showImage && (
         <Link href={`/berita/${article.slug}`} className="relative block h-16 w-20 shrink-0 overflow-hidden rounded-md bg-zinc-200 sm:h-20 sm:w-24">
           <CoverImage src={article.coverImage} alt={article.title} className="transition-transform duration-300 group-hover:scale-[1.05]" sizes="96px" />
+          {rank !== undefined && (
+            <span className="absolute left-1 top-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-700 text-[11px] font-bold text-white">
+              {rank}
+            </span>
+          )}
         </Link>
       )}
       {rank !== undefined && !showImage && (

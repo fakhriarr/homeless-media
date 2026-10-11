@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import type { Category, SessionUser } from "@/lib/types";
 import { clientApi } from "@/lib/client-api";
 import { SITE_NAME } from "@/lib/constants";
@@ -15,6 +15,7 @@ export default function Navbar({ categories }: { categories: Category[] }) {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
+  const pathname = usePathname();
 
   // fetchUser no longer used separately after refactor
 
@@ -42,7 +43,7 @@ export default function Navbar({ categories }: { categories: Category[] }) {
       mounted = false;
       window.removeEventListener("focus", handleFocus);
     };
-  }, []);
+  }, [pathname]);
 
   function closeMenus() {
     setMenuOpen(false);

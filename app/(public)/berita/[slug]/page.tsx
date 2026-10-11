@@ -66,47 +66,50 @@ export default async function ArticlePage({ params }: PageProps<"/berita/[slug]"
   );
 
   return (
-    <div className="grid gap-10 lg:grid-cols-3">
-      <ViewTracker slug={article.slug} />
+    <div className="">
+      <div className="grid gap-10 lg:grid-cols-3">
+        <ViewTracker slug={article.slug} />
+        <div className="lg:col-span-2">
+          <CategoryBadge name={article.category?.name} slug={article.category?.slug} />
+          <h1 className="mt-2 font-heading text-3xl font-extrabold tracking-tight leading-[1.2] text-[#4A2E1F] sm:text-4xl">
+            {article.title}
+          </h1>
+          {/* {article.excerpt && <p className="mt-3 text-sm leading-relaxed text-zinc-600">{article.excerpt}</p>} */}
 
-      <div className="lg:col-span-2">
-        <CategoryBadge name={article.category?.name} slug={article.category?.slug} />
-        <h1 className="mt-2 font-heading text-3xl font-extrabold tracking-tight leading-[1.2] text-[#4A2E1F] sm:text-4xl">
-          {article.title}
-        </h1>
-        {article.excerpt && <p className="mt-3 text-base leading-relaxed text-zinc-600">{article.excerpt}</p>}
-
-        <div className="mt-4">
-          <ArticleMeta publishedAt={article.publishedAt} content={article.content} views={article.views} />
-        </div>
-
-        {article.coverImage && (
-          <div className="relative mt-6 aspect-[16/9] overflow-hidden rounded-xl bg-zinc-200">
-            <CoverImage src={article.coverImage} alt={article.title} sizes="(max-width: 1024px) 100vw, 66vw" priority />
+          <div className="mt-4">
+            <ArticleMeta publishedAt={article.publishedAt} content={article.content} views={article.views} />
           </div>
-        )}
 
-        <article className="mt-6 space-y-5">
-          {paragraphs.map((p, i) => (
-            <p key={i} className="font-sans text-[17px] leading-7 text-zinc-800 sm:text-lg sm:leading-[1.75]">
-              {p}
-            </p>
-          ))}
-        </article>
-
-        {/* Profil Penulis */}
-        {article.author && (
-          <div className="mt-8 flex items-start gap-4 rounded-xl border border-zinc-200 bg-white p-5">
-            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-700 text-lg font-bold text-white">
-              {article.author.name.charAt(0).toUpperCase()}
-            </span>
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-zinc-400">Penulis</p>
-              <p className="font-heading text-lg font-bold tracking-tight text-[#4A2E1F]">{article.author.name}</p>
-              {article.author.bio && <p className="mt-1 text-sm leading-relaxed text-zinc-600">{article.author.bio}</p>}
+          {article.coverImage && (
+            <div className="relative mt-6 aspect-[16/9] overflow-hidden rounded-xl bg-zinc-200">
+              <CoverImage src={article.coverImage} alt={article.title} sizes="(max-width: 1024px) 100vw, 66vw" priority />
             </div>
-          </div>
-        )}
+          )}
+
+          <article className="mt-6 space-y-5">
+            {paragraphs.map((p, i) => (
+              <p key={i} className="font-sans md:text-base leading-7 text-zinc-800 sm:text-lg sm:leading-[1.75]">
+                {p}
+              </p>
+            ))}
+          </article>
+        </div>
+        <Sidebar />
+      </div>
+      <div>
+        {/* Profil Penulis */}
+          {article.author && (
+            <div className="mt-8 flex items-start gap-4 rounded-xl border border-zinc-200 bg-white p-5">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-700 text-lg font-bold text-white">
+                {article.author.name.charAt(0).toUpperCase()}
+              </span>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-zinc-400">Penulis</p>
+                <p className="font-heading text-lg font-bold tracking-tight text-[#4A2E1F]">{article.author.name}</p>
+                {article.author.bio && <p className="mt-1 text-sm leading-relaxed text-zinc-600">{article.author.bio}</p>}
+              </div>
+            </div>
+          )}
 
         {/* CTA Berlangganan */}
         <div className="mt-8">
@@ -116,10 +119,10 @@ export default async function ArticlePage({ params }: PageProps<"/berita/[slug]"
         {/* Berita Terkait */}
         {related.length > 0 && (
           <section className="mt-4">
-            <SectionHeading title="Berita Terkait" />
-            <div className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
+            <SectionHeading title="Artikel Terkait" />
+            <div className="grid gap-x-8 gap-y-6 lg:grid-cols-4 sm:grid-cols-2">
               {related.map((a) => (
-                <CompactArticle key={a.id} article={a} />
+                <CompactArticle key={a.id} article={a} showImage />
               ))}
             </div>
           </section>
@@ -129,8 +132,8 @@ export default async function ArticlePage({ params }: PageProps<"/berita/[slug]"
           if (articles.length === 0) return null;
           return (
             <section key={category.id} className="mt-10">
-              <SectionHeading title={`Berita ${category.name}`} href={`/kategori/${category.slug}`} />
-              <div className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
+              <SectionHeading title={`${category.name}`} href={`/kategori/${category.slug}`} />
+              <div className="grid gap-x-8 gap-y-6 lg:grid-cols-4 sm:grid-cols-2">
                 {articles.map((a) => (
                   <GridArticle key={a.id} article={a} />
                 ))}
@@ -139,8 +142,6 @@ export default async function ArticlePage({ params }: PageProps<"/berita/[slug]"
           );
         })}
       </div>
-
-      <Sidebar />
     </div>
   );
 }

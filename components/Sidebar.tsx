@@ -6,7 +6,7 @@ import { TrendingUpIcon } from "@/components/icons";
 
 export async function Sidebar() {
   const [{ articles: latest }, { articles: trending }] = await Promise.all([
-    apiFetch<{ articles: Article[] }>("/api/articles?limit=6"),
+    apiFetch<{ articles: Article[] }>("/api/articles?limit=5"),
     apiFetch<{ articles: Article[] }>("/api/articles?popular=1&limit=5"),
   ]);
 
@@ -16,7 +16,7 @@ export async function Sidebar() {
         <SectionHeading title="Berita Terbaru" />
         <div>
           {latest.map((a) => (
-            <CompactArticle key={a.id} article={a} />
+            <CompactArticle key={a.id} article={a} showImage />
           ))}
         </div>
       </section>
@@ -28,7 +28,7 @@ export async function Sidebar() {
         </div>
         <div>
           {trending.map((a, i) => (
-            <CompactArticle key={a.id} article={a} rank={i + 1} />
+            <CompactArticle key={a.id} article={a} rank={i + 1} showImage />
           ))}
         </div>
       </section>
