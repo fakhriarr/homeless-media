@@ -23,8 +23,12 @@ function LoginForm() {
     setLoading(true);
     try {
       const res = await clientApi.post<{ user: SessionUser }>("/api/auth/login", { email, password });
-      router.push(res.user.role === "ADMIN" && next === "/" ? "/admin/berita" : next);
+      const redirect = res.user.role === "ADMIN" && next === "/" ? "/admin/berita" : next;
+      router.push(redirect);
       router.refresh();
+      if (typeof window !== "undefined") {
+        setTimeout(() => window.location.reload(), 100);
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Login gagal.");
     } finally {

@@ -16,12 +16,32 @@ export default function Navbar({ categories }: { categories: Category[] }) {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
+  // fetchUser no longer used separately after refactor
+
+
   useEffect(() => {
-    clientApi
-      .get<{ user: SessionUser | null }>("/api/auth/me")
-      .then((res) => setUser(res.user))
-      .catch(() => setUser(null))
-      .finally(() => setLoading(false));
+    let mounted = true;
+    const run = async () => {
+      if (!mounted) return;
+      setLoading(true);
+      try {
+        const res = await clientApi.get<{ user: SessionUser | null }>("/api/auth/me");
+        if (mounted) setUser(res.user);
+      } catch {
+        if (mounted) setUser(null);
+      } finally {
+        if (mounted) setLoading(false);
+      }
+    };
+    const handleFocus = () => {
+      void run();
+    };
+    void run();
+    window.addEventListener("focus", handleFocus);
+    return () => {
+      mounted = false;
+      window.removeEventListener("focus", handleFocus);
+    };
   }, []);
 
   function closeMenus() {
@@ -111,7 +131,7 @@ export default function Navbar({ categories }: { categories: Category[] }) {
             <div className="relative">
               <button
                 onClick={() => setUserMenuOpen((v) => !v)}
-                className="flex items-center gap-2 rounded-md p-2 text-zinc-700 hover:bg-zinc-100"
+                className="flex items-center gap-2 rounded-full p-2 text-zinc-700 hover:bg-zinc-100"
                 aria-label="Menu akun"
               >
                 <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-700 text-xs font-bold text-white">
@@ -202,17 +222,17 @@ export default function Navbar({ categories }: { categories: Category[] }) {
             <div className="mt-4 border-t border-zinc-100 py-4">
               {!user && (
                 <div className="flex gap-2">
-                  <Link href="/login" onClick={closeMenus} className="flex-1 rounded-lg border border-zinc-300 px-4 py-2 text-center text-sm font-medium text-zinc-800">
+                  <Link href="/login" onClick={closeMenus} className="flex-1 rounded-full border border-zinc-300 px-4 py-2 text-center text-sm font-medium text-zinc-800">
                     Masuk
                   </Link>
-                  <Link href="/register" onClick={closeMenus} className="flex-1 rounded-lg bg-brand-700 px-4 py-2 text-center text-sm font-medium text-white">
+                  <Link href="/register" onClick={closeMenus} className="flex-1 rounded-full bg-brand-700 px-4 py-2 text-center text-sm font-medium text-white">
                     Daftar
                   </Link>
                 </div>
               )}
               {user && (
                 <div className="space-y-2">
-                  <div className="rounded-lg border border-zinc-200 bg-zinc-50 px-4 py-3">
+                  <div className="rounded-full border border-zinc-200 bg-zinc-50 px-4 py-3">
                     <p className="truncate text-sm font-semibold text-zinc-900">{user.name}</p>
                     <p className="truncate text-xs text-zinc-500">{user.email}</p>
                   </div>
