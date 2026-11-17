@@ -38,6 +38,8 @@ model Article {
   excerpt     String?
   content     String
   coverImage  String?
+  galleryImages String[] @default([])
+  galleryLayout String   @default("BOTTOM") // "MIDDLE" | "BOTTOM"
   status      String    @default("DRAFT") // "DRAFT" | "PUBLISHED" | "HIDDEN"
   featured    Boolean   @default(false)
   views       Int       @default(0)

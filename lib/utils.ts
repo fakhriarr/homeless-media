@@ -59,6 +59,20 @@ export function extractParagraphs(content: string): string[] {
     .filter(Boolean);
 }
 
+export const MAX_GALLERY_IMAGES = 20;
+
+export function parseGalleryImages(value: unknown): string[] {
+  if (!Array.isArray(value)) return [];
+  return value
+    .map((url) => String(url ?? "").trim())
+    .filter(Boolean)
+    .slice(0, MAX_GALLERY_IMAGES);
+}
+
+export function parseGalleryLayout(value: unknown): "MIDDLE" | "BOTTOM" {
+  return String(value ?? "").toUpperCase() === "MIDDLE" ? "MIDDLE" : "BOTTOM";
+}
+
 export function truncate(text: string, length = 120): string {
   if (text.length <= length) return text;
   return text.slice(0, length).trimEnd() + "…";

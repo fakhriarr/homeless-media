@@ -32,6 +32,8 @@ export default async function AdminEditBeritaPage({ params }: PageProps<"/admin/
             excerpt: dbArticle.excerpt ?? "",
             content: dbArticle.content,
             coverImage: dbArticle.coverImage ?? "",
+            galleryImages: dbArticle.galleryImages,
+            galleryLayout: dbArticle.galleryLayout === "MIDDLE" ? "MIDDLE" : "BOTTOM",
             categoryId: dbArticle.categoryId ?? "",
             status: dbArticle.status === "PUBLISHED" ? "PUBLISHED" : "DRAFT",
             featured: dbArticle.featured,

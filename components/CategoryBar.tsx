@@ -9,19 +9,21 @@ export default function CategoryBar({ categories }: { categories: Category[] }) 
 
   if (categories.length === 0) return null;
 
-  const isHome = pathname === "/";
+  const trending = categories.find((c) => c.slug === "populer-tren");
+  const visibleCategories = categories.filter((c) => c.slug !== "populer-tren");
+  const isHome = pathname === "/" || pathname === "/kategori/populer-tren";
   return (
     <nav className="sticky top-24 z-30 border-b border-zinc-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80" aria-label="Bar kategori">
       <div className="mx-auto flex max-w-6xl items-center gap-3 overflow-x-auto px-4 py-2.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         <Link
-          href="/"
+          href={trending ? "/kategori/populer-tren" : "/"}
           className={`whitespace-nowrap rounded-full px-3.5 py-1 text-xs font-semibold transition-colors ${
             isHome ? "bg-brand-700 text-white" : "text-zinc-700 hover:bg-zinc-100 hover:text-brand-700"
           }`}
         >
           Populer & Tren
         </Link>
-        {categories.map((c) => {
+        {visibleCategories.map((c) => {
           const isActive = pathname === `/kategori/${c.slug}`;
           return (
             <Link

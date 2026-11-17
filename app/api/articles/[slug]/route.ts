@@ -3,6 +3,7 @@ import type { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { ApiError, handleError, json, ok } from "@/lib/api-helpers";
 import { getSession, requireAdmin } from "@/lib/auth";
+import { parseGalleryImages, parseGalleryLayout } from "@/lib/utils";
 
 const articleInclude = {
   category: { select: { id: true, name: true, slug: true } },
@@ -25,6 +26,8 @@ function parseBody(body: unknown) {
     excerpt: String(b.excerpt ?? "").trim(),
     content: String(b.content ?? "").trim(),
     coverImage: String(b.coverImage ?? "").trim(),
+    galleryImages: parseGalleryImages(b.galleryImages),
+    galleryLayout: parseGalleryLayout(b.galleryLayout),
     categoryId: String(b.categoryId ?? "").trim(),
     status: String(b.status ?? "").trim().toUpperCase(),
     featured: Boolean(b.featured),
@@ -101,6 +104,8 @@ export async function PUT(req: NextRequest, ctx: RouteContext<"/api/articles/[sl
       excerpt: body.excerpt || null,
       content: body.content,
       coverImage: body.coverImage || null,
+      galleryImages: body.galleryImages,
+      galleryLayout: body.galleryLayout,
       featured: body.featured,
       category: body.categoryId ? { connect: { id: body.categoryId } } : { disconnect: true },
       status: nextStatus,

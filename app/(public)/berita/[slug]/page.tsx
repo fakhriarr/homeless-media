@@ -1,5 +1,7 @@
+import { Fragment } from "react";
 import { apiFetch } from "@/lib/api";
 import { extractParagraphs } from "@/lib/utils";
+import ArticleGallery from "@/components/ArticleGallery";
 import type { Category, Article, ArticleListResponse } from "@/lib/types";
 import {
   ArticleMeta,
@@ -51,6 +53,12 @@ export default async function ArticlePage({ params }: PageProps<"/berita/[slug]"
   if (!article) notFound();
 
   const paragraphs = extractParagraphs(article.content);
+  const galleryImages = article.galleryImages ?? [];
+  const galleryAfter = galleryImages.length > 0
+    ? article.galleryLayout === "MIDDLE"
+      ? Math.max(1, Math.ceil(paragraphs.length / 2))
+      : paragraphs.length
+    : -1;
   const categories = await apiFetch<{ categories: Category[] }>("/api/categories").catch(() => ({
     categories: [] as Category[],
   }));
@@ -88,9 +96,12 @@ export default async function ArticlePage({ params }: PageProps<"/berita/[slug]"
 
           <article className="mt-6 space-y-5">
             {paragraphs.map((p, i) => (
-              <p key={i} className="font-sans md:text-base leading-7 text-zinc-800 sm:text-lg sm:leading-[1.75]">
-                {p}
-              </p>
+              <Fragment key={i}>
+                <p className="font-sans md:text-base leading-7 text-zinc-800 sm:text-lg sm:leading-[1.75]">
+                  {p}
+                </p>
+                {galleryAfter === i + 1 && <ArticleGallery images={galleryImages} title={article.title} />}
+              </Fragment>
             ))}
           </article>
         </div>

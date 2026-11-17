@@ -15,6 +15,8 @@ export type CategoryWithCount = Category & { articleCount: number };
 
 export type ArticleStatus = "DRAFT" | "PUBLISHED" | "HIDDEN";
 
+export type GalleryLayout = "MIDDLE" | "BOTTOM";
+
 export type Article = {
   id: string;
   title: string;
@@ -22,6 +24,8 @@ export type Article = {
   excerpt: string | null;
   content: string;
   coverImage: string | null;
+  galleryImages: string[];
+  galleryLayout: GalleryLayout;
   status: ArticleStatus;
   featured: boolean;
   views: number;

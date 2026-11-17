@@ -375,6 +375,7 @@ async function main() {
     { name: "Teknologi", slug: "teknologi" },
     { name: "Hiburan", slug: "hiburan" },
     { name: "Gaya Hidup", slug: "gaya-hidup" },
+    { name: "Populer & Tren", slug: "populer-tren" },
   ];
   const categories = new Map<string, string>();
   for (const c of categoriesData) {

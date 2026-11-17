@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { clientApi } from "@/lib/client-api";
 import type { Category } from "@/lib/types";
 import ImageUploader from "@/components/admin/ImageUploader";
+import GalleryUploader from "@/components/admin/GalleryUploader";
 
 export type ArticleFormData = {
   id: string;
@@ -13,6 +14,8 @@ export type ArticleFormData = {
   excerpt: string;
   content: string;
   coverImage: string;
+  galleryImages: string[];
+  galleryLayout: "MIDDLE" | "BOTTOM";
   categoryId: string;
   status: "DRAFT" | "PUBLISHED";
   featured: boolean;
@@ -30,6 +33,8 @@ export default function ArticleForm({ initial, articleSlug, categories }: Articl
   const [excerpt, setExcerpt] = useState(initial?.excerpt ?? "");
   const [content, setContent] = useState(initial?.content ?? "");
   const [coverImage, setCoverImage] = useState(initial?.coverImage ?? "");
+  const [galleryImages, setGalleryImages] = useState<string[]>(initial?.galleryImages ?? []);
+  const [galleryLayout, setGalleryLayout] = useState<"MIDDLE" | "BOTTOM">(initial?.galleryLayout ?? "BOTTOM");
   const [categoryId, setCategoryId] = useState(initial?.categoryId ?? "");
   const [status, setStatus] = useState<"DRAFT" | "PUBLISHED">(initial?.status ?? "DRAFT");
   const [featured, setFeatured] = useState(initial?.featured ?? false);
@@ -51,6 +56,8 @@ export default function ArticleForm({ initial, articleSlug, categories }: Articl
         excerpt: excerpt.trim(),
         content: content.trim(),
         coverImage: coverImage.trim(),
+        galleryImages: galleryImages.map((url) => url.trim()).filter(Boolean),
+        galleryLayout,
         categoryId: categoryId || null,
         status,
         featured,
@@ -113,6 +120,26 @@ export default function ArticleForm({ initial, articleSlug, categories }: Articl
               className={`${inputClass} font-mono`}
             />
             <p className="mt-1 text-xs text-zinc-400">Paragraf dipisahkan dengan baris kosong.</p>
+          </div>
+
+          <div>
+            <label className={labelClass}>Gambar galeri / dokumentasi</label>
+            <GalleryUploader value={galleryImages} onChange={setGalleryImages} />
+
+            {galleryImages.length > 0 && (
+              <div className="mt-3">
+                <label htmlFor="galleryLayout" className={labelClass}>Posisi galeri</label>
+                <select
+                  id="galleryLayout"
+                  value={galleryLayout}
+                  onChange={(e) => setGalleryLayout(e.target.value as "MIDDLE" | "BOTTOM")}
+                  className={inputClass}
+                >
+                  <option value="MIDDLE">Di tengah isi konten</option>
+                  <option value="BOTTOM">Di bawah konten</option>
+                </select>
+              </div>
+            )}
           </div>
         </div>
 

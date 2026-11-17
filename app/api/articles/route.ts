@@ -2,7 +2,7 @@ import type { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { ApiError, handleError, json, ok } from "@/lib/api-helpers";
 import { getSession, requireAdmin } from "@/lib/auth";
-import { slugify } from "@/lib/utils";
+import { parseGalleryImages, parseGalleryLayout, slugify } from "@/lib/utils";
 
 const articleInclude = {
   category: { select: { id: true, name: true, slug: true } },
@@ -105,6 +105,8 @@ export async function POST(request: Request) {
     const content = String(body?.content ?? "").trim();
     const excerpt = String(body?.excerpt ?? "").trim() || undefined;
     const coverImage = String(body?.coverImage ?? "").trim() || null;
+    const galleryImages = parseGalleryImages(body?.galleryImages);
+    const galleryLayout = parseGalleryLayout(body?.galleryLayout);
     const categoryId = String(body?.categoryId ?? "").trim() || null;
     const status = String(body?.status ?? "DRAFT");
     const featured = Boolean(body?.featured);
@@ -123,6 +125,8 @@ export async function POST(request: Request) {
         excerpt,
         content,
         coverImage,
+        galleryImages,
+        galleryLayout,
         categoryId,
         status,
         featured,
